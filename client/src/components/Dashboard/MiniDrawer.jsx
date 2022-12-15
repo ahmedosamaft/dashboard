@@ -94,7 +94,7 @@ export default function MiniDrawer() {
   const navigate = useNavigate();
   React.useEffect(() => {
     if (!cookies.user) navigate("/");
-  }, [cookies]);
+  }, [cookies, navigate]);
 
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
