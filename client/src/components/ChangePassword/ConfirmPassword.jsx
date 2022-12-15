@@ -18,6 +18,7 @@ export default function ConfirmPassword({ register, errors }) {
       {...register("confirmPassword")}
       error={errors.confirmPassword?.message ? true : false}
       aria-label="Password Field"
+      helperText={errors.confirmPassword?.message && errors.confirmPassword?.message}
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
