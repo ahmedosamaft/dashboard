@@ -65,8 +65,8 @@ export default function Form() {
       });
       console.log(res);
       setFlag(false);
-      setCookie("user", res.data.user.email, "/");
-      setCookie("id", res.data.user._id, "/");
+      setCookie("user", res.data.user, "/");
+      setCookie("id", res.data.id, "/");
       navigate("/dashboard");
     } catch (e) {
       setFlag(false);

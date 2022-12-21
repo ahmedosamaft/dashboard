@@ -9,11 +9,13 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
 });
 export default function Forget() {
+  const [cookies, setCookie] = useCookies();
   const {
     register,
     handleSubmit,
@@ -38,6 +40,7 @@ export default function Forget() {
         },
       });
       setFlag(false);
+      setCookie("user", da.email);
       navigate("/PinCode");
     } catch (e) {
       setOverlay(true);
@@ -66,7 +69,7 @@ export default function Forget() {
           {!flag ? (
             <FiberPinIcon sx={{ width: "100%" }} />
           ) : (
-            <CircularProgress  />
+            <CircularProgress />
           )}
         </IconButton>
 

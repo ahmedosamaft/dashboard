@@ -17,11 +17,11 @@ export default function Pop() {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popper" : undefined;
 
-  const [cookies, , removerCookies] = useCookies();
+  const [, , removerCookies] = useCookies();
 
-  const logoutHandler = (e) => {
+  const logoutHandler = () => {
     removerCookies("user");
-    removerCookies("_id");
+    removerCookies("id");
   };
 
   return (

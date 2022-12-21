@@ -8,13 +8,16 @@ import axios from "axios";
 import Password from "../../LoginPage/Password";
 import ConfirmPassword from "../../ChangePassword/ConfirmPassword";
 import { Alert, Button, Snackbar, Stack } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function Profile() {
   const [cookies] = useCookies();
   const schema = yup.object().shape({
-    password: yup.string().min(8).max(24).required(),
+    password: yup
+      .string()
+      .required("This Field cannont be empty")
+      .min(8)
+      .max(24),
     confirmPassword: yup
       .string()
       .oneOf([yup.ref("password"), null], "Password Must Match")
@@ -27,21 +30,22 @@ export default function Profile() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
   const [open, setOpen] = React.useState(false);
-  const navigate = useNavigate();
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState({ show: false, status: "success" });
   const submitHandler = async (e) => {
     try {
-      await axios.put("http://localhost:4000/login/changePassword", {
+      let res = await axios.put("http://localhost:4000/login/changePassword", {
         method: "PUT",
-        data: { password: e.password },
+        data: { email: cookies.user, password: e.password },
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
           Accept: "*/*",
         },
       });
-      setShow(true);
+      console.log(res);
+      setShow({ show: true, status: "success" });
     } catch (e) {
       console.log(e);
+      setShow({ show: true, status: "error" });
     }
   };
   const handleClick = () => {
@@ -58,7 +62,6 @@ export default function Profile() {
     <form onSubmit={handleSubmit(submitHandler)}>
       <Stack width={450} spacing={2} margin="auto">
         <ProfileEmail email={cookies.user} />
-
         <Password register={register} errors={errors} />
         <ConfirmPassword register={register} errors={errors} />
         <Button
@@ -75,14 +78,16 @@ export default function Profile() {
           Save Changes
         </Button>
       </Stack>
-      {show && (
+      {show.show && (
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
           <Alert
             onClose={handleClose}
-            severity="success"
+            severity={show.status}
             sx={{ width: "100%" }}
           >
-            Password Changed Successfully!
+            {show.status === "success"
+              ? "Password Changed Successfully!"
+              : "Password Does NOT Change!"}
           </Alert>
         </Snackbar>
       )}

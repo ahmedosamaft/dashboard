@@ -5,8 +5,9 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
 var loginRouter = require("./routes/login");
+var changePasswordRouter = require("./routes/changePassword");
+var dashboardRouter = require("./routes/dashboard");
 
 var app = express();
 
@@ -18,6 +19,8 @@ var allowCrossDomain = function (req, res, next) {
 };
 
 app.use(allowCrossDomain);
+
+//connect to database
 mongoose.connect(
   "mongodb+srv://ahmedosamaft:a3209596A@cluster0.2vog62a.mongodb.net/NewDB"
 );
@@ -32,9 +35,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use("/dashboard", dashboardRouter);
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
 app.use("/login", loginRouter);
+app.use("/changePassword", changePasswordRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
