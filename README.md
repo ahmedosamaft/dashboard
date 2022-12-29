@@ -3,13 +3,14 @@
 # Full-Stack Dashboard
 
 ## To Login send POST request to :
-{{URL}}api/v1/users/login
+`{{URL}}api/v1/users/login`
 and body:
+```
 {
 "email":DUMMY_EMAIL,
 "password":DUMMY_PASSWORD
 }
-
+```
 ## To Sign up send POST request to :
 {{URL}}api/v1/users/signup
 and body:
@@ -18,7 +19,7 @@ and body:
 "password":DUMMY_PASSWORD,
 "confirmPassword": DUMMY_PASSWORD
 }
-and you must be logged in and send your JWT Token in header Authorization
+[x] ***and you must be logged in and send your JWT Token in header Authorization***
 
 ## Forget Password
 ### 1)send POST request to :
