@@ -19,7 +19,7 @@ and body:
 "password":DUMMY_PASSWORD,
 "confirmPassword": DUMMY_PASSWORD
 }
-[x] ***and you must be logged in and send your JWT Token in header Authorization***
+- [x] ***and you must be logged in and send your JWT Token in header Authorization***
 
 ## Forget Password
 ### 1)send POST request to :
