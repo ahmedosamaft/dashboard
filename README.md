@@ -2,7 +2,7 @@
 
 # Full-Stack Dashboard
 
-=> To Login send POST request to :
+## To Login send POST request to :
 {{URL}}api/v1/users/login
 and body:
 {
@@ -10,7 +10,7 @@ and body:
 "password":DUMMY_PASSWORD
 }
 
-=> To Sign up send POST request to :
+## To Sign up send POST request to :
 {{URL}}api/v1/users/signup
 and body:
 {
@@ -20,8 +20,8 @@ and body:
 }
 and you must be logged in and send your JWT Token in header Authorization
 
-=> Forget Password
-1)send POST request to :
+## Forget Password
+### 1)send POST request to :
 {{URL}}api/v1/users/forgetpassword
 and body:
 {
@@ -30,7 +30,7 @@ and body:
 then API will response with resetPasswordToken you must save it in cookies
 also it will Send a pin code to the email you sent in the body
 
-2)send POST request to:
+### 2)send POST request to:
 {{URL}}api/v1/users/resetpasswordcheck
 and body:
 {
@@ -38,7 +38,7 @@ and body:
 }
 YOU MUST SEND AUTHORIZATION TOKEN IN HEADER THAT SERVER SENT IN THE (1) STEP
 
-3)send PATCH request to:
+### 3)send PATCH request to:
 {{URL}}api/v1/users/resetpassword
 and body:
 {
@@ -48,7 +48,7 @@ and body:
 }
 YOU MUST SEND AUTHORIZATION TOKEN IN HEADER THAT SERVER SENT IN THE (1) STEP
 
-=> Update user password:
+## Update user password:
 send PATCH request to :
 {{URL}}api/v1/users/updatepassword
 and body:
@@ -59,16 +59,16 @@ and body:
 }
 AND SEND USER LOGIN TOKEN IN AUTHORIZATION HEADER
 
-=> To get all users:
+## To get all users:
 send GET request to:
 {{URL}}api/v1/users
 
-=> To get one user:
+## To get one user:
 send GET request to:
 {{URL}}api/v1/users/:id
 and you must send user login token and you must be Admin role
 
-=> to update one user:
+## to update one user:
 send PATCH request to:
 {{URL}}api/v1/users/:id
 
